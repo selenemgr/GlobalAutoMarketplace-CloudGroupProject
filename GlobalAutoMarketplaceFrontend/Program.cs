@@ -6,6 +6,12 @@ namespace GlobalAutoMarketplaceFrontend
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            // Register HttpClient for API calls
+            builder.Services.AddHttpClient("GlobalAutoAPI", client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:5001/api/"); // Adjust port if needed
+            });
+
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
