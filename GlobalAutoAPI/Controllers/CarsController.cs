@@ -10,7 +10,7 @@ namespace GlobalAutoAPI.Controllers
     //making specific route "api/cars"
     [ApiController]
     [Route("api/cars")]
-    public class CarsController : ControllerBase
+    public class CarsController : ControllerBase // add new change
     {
         private readonly ICarRepository _carRepository;
         private readonly IMapper _mapper;
