@@ -1,0 +1,14 @@
+C:\Users\abdul\OneDrive\Desktop\Centennial S\Semester 5\API Engineering & Cloud Computing\GlobalAutoMarketplace\GlobalAutoLibrary\bin\Debug\net8.0\GlobalAutoLibrary.deps.json
+C:\Users\abdul\OneDrive\Desktop\Centennial S\Semester 5\API Engineering & Cloud Computing\GlobalAutoMarketplace\GlobalAutoLibrary\bin\Debug\net8.0\GlobalAutoLibrary.runtimeconfig.json
+C:\Users\abdul\OneDrive\Desktop\Centennial S\Semester 5\API Engineering & Cloud Computing\GlobalAutoMarketplace\GlobalAutoLibrary\bin\Debug\net8.0\GlobalAutoLibrary.dll
+C:\Users\abdul\OneDrive\Desktop\Centennial S\Semester 5\API Engineering & Cloud Computing\GlobalAutoMarketplace\GlobalAutoLibrary\bin\Debug\net8.0\GlobalAutoLibrary.pdb
+C:\Users\abdul\OneDrive\Desktop\Centennial S\Semester 5\API Engineering & Cloud Computing\GlobalAutoMarketplace\GlobalAutoLibrary\obj\Debug\net8.0\GlobalAutoLibrary.csproj.AssemblyReference.cache
+C:\Users\abdul\OneDrive\Desktop\Centennial S\Semester 5\API Engineering & Cloud Computing\GlobalAutoMarketplace\GlobalAutoLibrary\obj\Debug\net8.0\GlobalAutoLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\abdul\OneDrive\Desktop\Centennial S\Semester 5\API Engineering & Cloud Computing\GlobalAutoMarketplace\GlobalAutoLibrary\obj\Debug\net8.0\GlobalAutoLibrary.AssemblyInfoInputs.cache
+C:\Users\abdul\OneDrive\Desktop\Centennial S\Semester 5\API Engineering & Cloud Computing\GlobalAutoMarketplace\GlobalAutoLibrary\obj\Debug\net8.0\GlobalAutoLibrary.AssemblyInfo.cs
+C:\Users\abdul\OneDrive\Desktop\Centennial S\Semester 5\API Engineering & Cloud Computing\GlobalAutoMarketplace\GlobalAutoLibrary\obj\Debug\net8.0\GlobalAutoLibrary.csproj.CoreCompileInputs.cache
+C:\Users\abdul\OneDrive\Desktop\Centennial S\Semester 5\API Engineering & Cloud Computing\GlobalAutoMarketplace\GlobalAutoLibrary\obj\Debug\net8.0\GlobalAutoLibrary.dll
+C:\Users\abdul\OneDrive\Desktop\Centennial S\Semester 5\API Engineering & Cloud Computing\GlobalAutoMarketplace\GlobalAutoLibrary\obj\Debug\net8.0\refint\GlobalAutoLibrary.dll
+C:\Users\abdul\OneDrive\Desktop\Centennial S\Semester 5\API Engineering & Cloud Computing\GlobalAutoMarketplace\GlobalAutoLibrary\obj\Debug\net8.0\GlobalAutoLibrary.pdb
+C:\Users\abdul\OneDrive\Desktop\Centennial S\Semester 5\API Engineering & Cloud Computing\GlobalAutoMarketplace\GlobalAutoLibrary\obj\Debug\net8.0\GlobalAutoLibrary.genruntimeconfig.cache
+C:\Users\abdul\OneDrive\Desktop\Centennial S\Semester 5\API Engineering & Cloud Computing\GlobalAutoMarketplace\GlobalAutoLibrary\obj\Debug\net8.0\ref\GlobalAutoLibrary.dll

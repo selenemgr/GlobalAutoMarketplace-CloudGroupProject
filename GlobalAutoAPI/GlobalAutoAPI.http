@@ -1,0 +1,6 @@
+@GlobalAutoAPI_HostAddress = http://localhost:5129
+
+GET {{GlobalAutoAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
