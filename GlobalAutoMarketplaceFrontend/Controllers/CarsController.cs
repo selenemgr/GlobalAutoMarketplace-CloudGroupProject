@@ -53,7 +53,7 @@ namespace GlobalAutoMarketplaceFrontend.Controllers
             return View(car);
         }
 
-        [HttpPost]
+        [HttpPut]
         public async Task<IActionResult> Edit(int id, Car car)
         {
             var response = await _httpClient.PutAsJsonAsync($"cars/{id}", car);
@@ -73,7 +73,7 @@ namespace GlobalAutoMarketplaceFrontend.Controllers
             return View(car);
         }
 
-        [HttpPost, ActionName("Delete")]
+        [HttpDelete]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var response = await _httpClient.DeleteAsync($"cars/{id}");
