@@ -7,9 +7,9 @@ namespace GlobalAutoMarketplaceFrontend
             var builder = WebApplication.CreateBuilder(args);
 
             // Register HttpClient for API calls
-            builder.Services.AddHttpClient("GlobalAutoAPI", client =>
+            builder.Services.AddHttpClient("GlobalAutoApi", client =>
             {
-                client.BaseAddress = new Uri("https://localhost:5001/api/"); // Adjust port if needed
+                client.BaseAddress = new Uri(builder.Configuration["ApiUrl"]);
             });
 
             // Add services to the container.

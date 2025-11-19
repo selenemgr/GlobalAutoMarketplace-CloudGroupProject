@@ -1,4 +1,5 @@
 ﻿using GlobalAutoLibrary.Models;
+using GlobalAutoMarketplaceFrontend.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GlobalAutoMarketplaceFrontend.Controllers
@@ -29,6 +30,65 @@ namespace GlobalAutoMarketplaceFrontend.Controllers
             var user = await response.Content.ReadFromJsonAsync<User>();
             return View(user);
         }
+
+        #region Login and Registration
+
+        [HttpGet]
+        public IActionResult Login() => PartialView("_LoginModal");
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return PartialView("_LoginModal", model);
+
+            var response = await _httpClient.GetAsync($"users?email={model.Email}&password={model.Password}");
+
+            if (!response.IsSuccessStatusCode)
+            {
+                ModelState.AddModelError("", "Invalid email or password.");
+                return PartialView("_LoginModal", model);
+            }
+
+            var user = await response.Content.ReadFromJsonAsync<User>();
+
+            // Store user info in session
+            HttpContext.Session.SetInt32("UserId", user.UserId);
+            HttpContext.Session.SetString("Username", user.Username);
+            HttpContext.Session.SetString("UserRole", user.UserRole);
+
+            return Json(new { success = true });
+        }
+
+        [HttpGet]
+        public IActionResult Register() => PartialView("_RegisterModal");
+
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return PartialView("_RegisterModal", model);
+
+            var newUser = new User
+            {
+                Username = model.Username,
+                Email = model.Email,
+                Password = model.Password,
+                UserRole = "Buyer"
+            };
+
+            var response = await _httpClient.PostAsJsonAsync("users", newUser);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                ModelState.AddModelError("", "Registration failed.");
+                return PartialView("_RegisterModal", model);
+            }
+
+            return Json(new { success = true });
+        }
+
+        #endregion
 
         [HttpGet]
         public IActionResult Create() => View();

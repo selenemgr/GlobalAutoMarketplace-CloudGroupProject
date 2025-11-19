@@ -1,0 +1,35 @@
+﻿@model IEnumerable<GlobalAutoLibrary.Models.Car>
+@{
+    ViewData["Title"] = "Cars";
+}
+<h2>Cars</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Model</th>
+            <th>Year</th>
+            <th>Brand</th>
+            <th>Seller</th>
+            <th>Price</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var car in Model)
+    {
+        <tr>
+            <td>@car.Model</td>
+            <td>@car.Year</td>
+            <td>@car.Brand.BrandName</td>
+            <td>@car.Seller.Username</td>
+            <td>@car.Price.ToString("C")</td>
+            <td>
+                <a>Details</a>
+                <a>Edit</a>
+                <a>Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+CreateAdd New Car</a>

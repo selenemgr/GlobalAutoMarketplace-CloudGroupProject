@@ -40,6 +40,30 @@ namespace GlobalAutoAPI.Controllers
             return Ok(_mapper.Map<UserDto>(user));
         }
 
+        // POST api/users/login
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
+        {
+            if (string.IsNullOrWhiteSpace(loginDto.Email) ||
+                string.IsNullOrWhiteSpace(loginDto.Password))
+            {
+                return BadRequest("Email and password are required.");
+            }
+
+            var user = await _userRepository.GetUserByEmailAsync(loginDto.Email);
+
+            if (user == null)
+                return Unauthorized("Invalid email or password.");
+
+            if (user.Password != loginDto.Password)
+                return Unauthorized("Invalid email or password.");
+
+            var userDto = _mapper.Map<UserDto>(user);
+
+            return Ok(userDto);
+        }
+
+
         // POST: api/users
         [HttpPost]
         public async Task<ActionResult<UserDto>> CreateUser([FromBody] UserForManipulationDto userForCreation)

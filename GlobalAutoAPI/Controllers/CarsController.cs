@@ -23,10 +23,10 @@ namespace GlobalAutoAPI.Controllers
 
         // GET (GetAll): api/cars
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CarWithoutDetailsDto>>> GetCars()
+        public async Task<ActionResult<IEnumerable<CarDto>>> GetCars()
         {
-            var carEntities = await _carRepository.GetCarsAsync(includeDetails: false);
-            return Ok(_mapper.Map<IEnumerable<CarWithoutDetailsDto>>(carEntities));
+            var carEntities = await _carRepository.GetCarsAsync(includeDetails: true);
+            return Ok(_mapper.Map<IEnumerable<CarDto>>(carEntities));
         }
 
         // GET (GetById): api/cars/{carId}
