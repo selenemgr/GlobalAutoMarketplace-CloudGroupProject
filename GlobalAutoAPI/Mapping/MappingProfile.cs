@@ -18,10 +18,10 @@ namespace GlobalAutoAPI.Mapping
             CreateMap<Brand, BrandWithoutCarsDto>();
             CreateMap<BrandForManipulationDto, Brand>();
 
-            // users mapping
-            CreateMap<User, UserDto>();
-            CreateMap<User, UserWithoutEmailDto>();
-            CreateMap<UserForManipulationDto, User>();
+            // Vehicle type mappings
+            CreateMap<VehicleType, VehicleTypeDto>();
+            CreateMap<VehicleType, VehicleTypeWithoutCarsDto>();
+            CreateMap<VehicleTypeForManipulationDto, VehicleType>();
         }
     }
 }

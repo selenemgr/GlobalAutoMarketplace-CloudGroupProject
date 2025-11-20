@@ -8,6 +8,6 @@ namespace GlobalAutoAPI.DTO
 
         [Required(ErrorMessage = "Brand Name is required.")]
         [MaxLength(50)]
-        public string BrandName { get; set; } = string.Empty;
+        public string BName { get; set; } = string.Empty;
     }
 }

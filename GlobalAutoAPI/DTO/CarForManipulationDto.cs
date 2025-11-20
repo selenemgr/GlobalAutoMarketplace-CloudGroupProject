@@ -9,15 +9,15 @@ namespace GlobalAutoAPI.DTO
         [Required(ErrorMessage = "You must provide a BrandId.")]
         public int BrandId { get; set; }
 
-        [Required(ErrorMessage = "You must provide a SellerId.")]
-        public int SellerId { get; set; }
+        [Required(ErrorMessage = "You must provide a VehicleTypeId.")]
+        public int VehicleTypeId { get; set; }
 
         [Required(ErrorMessage = "Model is required.")]
         [MaxLength(50)]
         public string Model { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Year is required.")]
-        [Range(1900, 2100)]
+        [Range(1900, 2025)]
         public int Year { get; set; }
 
         [Required(ErrorMessage = "Price is required.")]
