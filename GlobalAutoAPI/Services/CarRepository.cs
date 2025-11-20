@@ -9,7 +9,7 @@ namespace GlobalAutoAPI.Services
 
         public CarRepository(GlobalAutoDBContext context)
         {
-            _context = context;
+            _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
         public async Task<bool> CarExistsAsync(int carId)
@@ -22,7 +22,8 @@ namespace GlobalAutoAPI.Services
             IQueryable<Car> collection = _context.Cars;
             if (includeDetails)
             {
-                collection = collection.Include(c => c.Brand).Include(c => c.Seller);
+                
+                collection = collection.Include(c => c.Brand).Include(c => c.VehicleType);
             }
             return await collection.OrderBy(c => c.Model).ToListAsync();
         }
@@ -32,7 +33,7 @@ namespace GlobalAutoAPI.Services
             IQueryable<Car> collection = _context.Cars;
             if (includeDetails)
             {
-                collection = collection.Include(c => c.Brand).Include(c => c.Seller);
+                collection = collection.Include(c => c.Brand).Include(c => c.VehicleType);
             }
             return await collection.FirstOrDefaultAsync(c => c.CarId == carId);
         }
