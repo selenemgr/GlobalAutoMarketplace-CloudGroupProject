@@ -37,6 +37,16 @@ namespace GlobalAutoAPI.Services
             return await collection.FirstOrDefaultAsync(b => b.BrandId == brandId);
         }
 
+        public async Task<Brand?> GetBrandByNameAsync(string brandName, bool includeCars)
+        {
+            IQueryable<Brand> collection = _context.Brands;
+            if (includeCars)
+            {
+                collection = collection.Include(b => b.Cars);
+            }
+            return await collection.FirstOrDefaultAsync(b => b.Bname.ToLower() == brandName.ToLower());
+        }
+
         public async Task AddBrandAsync(Brand brand)
         {
             await _context.Brands.AddAsync(brand);

@@ -46,6 +46,24 @@ namespace GlobalAutoAPI.Controllers
             return Ok(_mapper.Map<BrandWithoutCarsDto>(brand));
         }
 
+        //extra part for easier search
+        // GET By Name : api/types/byname/{brandName}
+        // note it is /byname/{brandName}
+        [HttpGet("byname/{brandName}")]
+        public async Task<IActionResult> GetBrandByName(string brandName, bool includeCars = false)
+        {
+            var brand = await _brandRepository.GetBrandByNameAsync(brandName, includeCars);
+
+            if (brand == null) return NotFound();
+
+            if (includeCars)
+            {
+                return Ok(_mapper.Map<BrandDto>(brand));
+            }
+
+            return Ok(_mapper.Map<BrandWithoutCarsDto>(brand));
+        }
+
         // POST: api/brands
         [HttpPost]
         public async Task<ActionResult<BrandDto>> CreateBrand(BrandForManipulationDto brandForCreation)

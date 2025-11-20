@@ -45,6 +45,24 @@ namespace GlobalAutoAPI.Controllers
             return Ok(_mapper.Map<VehicleTypeWithoutCarsDto>(vehicleType));
         }
 
+        //extra part for easier search
+        // GET By Name : api/types/byname/{typeName}
+        // note it is /byname/{typeName} 
+        [HttpGet("byname/{typeName}")]
+        public async Task<IActionResult> GetVehicleTypeByName(string typeName, bool includeCars = false)
+        {
+            var vehicleType = await _vehicleTypeRepository.GetVehicleTypeByNameAsync(typeName, includeCars);
+
+            if (vehicleType == null) return NotFound();
+
+            if (includeCars)
+            {
+                return Ok(_mapper.Map<VehicleTypeDto>(vehicleType));
+            }
+
+            return Ok(_mapper.Map<VehicleTypeWithoutCarsDto>(vehicleType));
+        }
+
         // POST: api/types
         [HttpPost]
         public async Task<ActionResult<VehicleTypeDto>> CreateVehicleType(

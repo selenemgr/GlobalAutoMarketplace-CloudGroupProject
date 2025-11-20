@@ -52,6 +52,25 @@ namespace GlobalAutoAPI.Controllers
             return Ok(_mapper.Map<CarWithoutDetailsDto>(car));
         }
 
+        //Get by model: api/cars/bymodel/{model}
+        [HttpGet("bymodel/{model}")]
+        public async Task<ActionResult<IEnumerable<CarWithoutDetailsDto>>> GetCarsByModel(string model, bool includeDetails = false)
+        {
+            var carEntities = await _carRepository.GetCarsByModelAsync(model, includeDetails);
+
+            // If no match, return 404
+            if (!carEntities.Any()) return NotFound();
+
+            if (includeDetails)
+            {
+                // Return CarDto
+                return Ok(_mapper.Map<IEnumerable<CarDto>>(carEntities));
+            }
+
+            //CarWithoutDetailsDto
+            return Ok(_mapper.Map<IEnumerable<CarWithoutDetailsDto>>(carEntities));
+        }
+
         // POST: api/cars
         [HttpPost]
         public async Task<ActionResult<CarDto>> CreateCar(CarForManipulationDto carForCreation)

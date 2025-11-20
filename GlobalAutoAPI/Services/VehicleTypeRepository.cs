@@ -35,11 +35,21 @@ namespace GlobalAutoAPI.Services
 
             if (includeCars)
             {
-                
                 collection = collection.Include(v => v.Cars);
             }
 
             return await collection.FirstOrDefaultAsync(v => v.VehicleTypeId == vehicleTypeId);
+        }
+
+        public async Task<VehicleType?> GetVehicleTypeByNameAsync(string typeName, bool includeCars)
+        {
+            IQueryable<VehicleType> collection = _context.VehicleTypes;
+
+            if (includeCars)
+            {
+                collection = collection.Include(v => v.Cars);
+            }
+            return await collection.FirstOrDefaultAsync(v => v.TypeName.ToLower() == typeName.ToLower());
         }
 
         public async Task AddVehicleTypeAsync(VehicleType vehicleType)
