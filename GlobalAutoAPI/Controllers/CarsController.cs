@@ -33,7 +33,7 @@ namespace GlobalAutoAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CarWithoutDetailsDto>>> GetCars()
         {
-            var carEntities = await _carRepository.GetCarsAsync(includeDetails: false);
+            var carEntities = await _carRepository.GetCarsAsync(includeDetails: true);
             return Ok(_mapper.Map<IEnumerable<CarWithoutDetailsDto>>(carEntities));
         }
 
@@ -52,7 +52,7 @@ namespace GlobalAutoAPI.Controllers
             return Ok(_mapper.Map<CarWithoutDetailsDto>(car));
         }
 
-        //Get by model: api/cars/bymodel/{model}
+        // Get By Model: api/cars/bymodel/{model}
         [HttpGet("bymodel/{model}")]
         public async Task<ActionResult<IEnumerable<CarWithoutDetailsDto>>> GetCarsByModel(string model, bool includeDetails = false)
         {

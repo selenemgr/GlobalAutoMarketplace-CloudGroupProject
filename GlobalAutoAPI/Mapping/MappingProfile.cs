@@ -10,7 +10,7 @@ namespace GlobalAutoAPI.Mapping
         {
             // cars mappings
             CreateMap<Car, CarDto>();
-            CreateMap<Car, CarWithoutDetailsDto>();
+            CreateMap<Car, CarWithoutDetailsDto>().ForMember(dest => dest.BrandName,opt => opt.MapFrom(src => src.Brand.Bname));
             CreateMap<CarForManipulationDto, Car>();
 
             // brand mappings
@@ -22,6 +22,8 @@ namespace GlobalAutoAPI.Mapping
             CreateMap<VehicleType, VehicleTypeDto>();
             CreateMap<VehicleType, VehicleTypeWithoutCarsDto>();
             CreateMap<VehicleTypeForManipulationDto, VehicleType>();
+
+
         }
     }
 }

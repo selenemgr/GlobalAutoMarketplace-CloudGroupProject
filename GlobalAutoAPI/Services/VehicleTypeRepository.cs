@@ -35,7 +35,7 @@ namespace GlobalAutoAPI.Services
 
             if (includeCars)
             {
-                collection = collection.Include(v => v.Cars);
+                collection = collection.Include(v => v.Cars).ThenInclude(c => c.Brand);
             }
 
             return await collection.FirstOrDefaultAsync(v => v.VehicleTypeId == vehicleTypeId);
