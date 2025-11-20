@@ -30,7 +30,7 @@ INSERT INTO Brands (BName) VALUES
 -- VehicleTypes Table 
 CREATE TABLE VehicleTypes (
     VehicleTypeId   INT             IDENTITY (1, 1) PRIMARY KEY,
-    TypeName        NVARCHAR (50)   NOT NULL UNIQUE, -- SUV, Sedan, etc.
+    TypeName        NVARCHAR (50)   NOT NULL UNIQUE,
     Description     NVARCHAR (200)  NULL
 );
 GO
