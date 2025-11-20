@@ -21,7 +21,9 @@ namespace GlobalAutoAPI
             //  we add repository services  
             builder.Services.AddScoped<ICarRepository, CarRepository>();
             builder.Services.AddScoped<IBrandRepository, BrandRepository>();
-            builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+            // Replaced IUserRepository with IVehicleTypeRepository
+            builder.Services.AddScoped<IVehicleTypeRepository, VehicleTypeRepository>();
 
             // we add the automapper  
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

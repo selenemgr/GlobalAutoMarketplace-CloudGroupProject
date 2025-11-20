@@ -48,21 +48,20 @@ namespace GlobalAutoAPI.Controllers
 
         // POST: api/brands
         [HttpPost]
-        public async Task<ActionResult<BrandDto>> CreateBrand([FromBody] BrandForManipulationDto brandForCreation)
+        public async Task<ActionResult<BrandDto>> CreateBrand(BrandForManipulationDto brandForCreation)
         {
             var brandEntity = _mapper.Map<Brand>(brandForCreation);
 
             await _brandRepository.AddBrandAsync(brandEntity);
             await _brandRepository.SaveAsync();
 
-            var createdBrandToReturn = _mapper.Map<BrandDto>(brandEntity);
-
-            return CreatedAtRoute("GetBrand", new { brandId = createdBrandToReturn.BrandId }, createdBrandToReturn);
+            var brandToReturn = _mapper.Map<BrandDto>(brandEntity);
+            return CreatedAtRoute("GetBrand", new { brandId = brandToReturn.BrandId },brandToReturn);
         }
 
-        // PUT (Replace): api/brands/{brandId}
+        // PUT (Full Update): api/brands/{brandId}
         [HttpPut("{brandId}")]
-        public async Task<ActionResult> UpdateBrand(int brandId, [FromBody] BrandForManipulationDto brandForUpdate)
+        public async Task<ActionResult> UpdateBrand(int brandId, BrandForManipulationDto brandForUpdate)
         {
             var brandEntity = await _brandRepository.GetBrandByIdAsync(brandId, includeCars: false);
 
@@ -71,14 +70,12 @@ namespace GlobalAutoAPI.Controllers
             _mapper.Map(brandForUpdate, brandEntity);
             await _brandRepository.SaveAsync();
 
-            return NoContent(); 
+            return NoContent();
         }
 
         // PATCH (Partial Update): api/brands/{brandId}
         [HttpPatch("{brandId}")]
-        public async Task<ActionResult> PartiallyUpdateBrand(
-            int brandId,
-            [FromBody] JsonPatchDocument<BrandForManipulationDto> patchDocument)
+        public async Task<ActionResult> PartiallyUpdateBrand(int brandId,[FromBody] JsonPatchDocument<BrandForManipulationDto> patchDocument)
         {
             var brandEntity = await _brandRepository.GetBrandByIdAsync(brandId, includeCars: false);
 
