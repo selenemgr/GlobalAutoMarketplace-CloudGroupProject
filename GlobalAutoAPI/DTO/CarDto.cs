@@ -7,6 +7,8 @@ namespace GlobalAutoAPI.DTO
         public int CarId { get; set; }
         public BrandWithoutCarsDto Brand { get; set; } = new BrandWithoutCarsDto();
         public VehicleTypeWithoutCarsDto VehicleType { get; set; } = new VehicleTypeWithoutCarsDto();
+
+
         public string Model { get; set; } = string.Empty;
         public int Year { get; set; }
         public decimal Price { get; set; }
