@@ -2,7 +2,51 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@model GlobalAutoMarketplaceFrontend.Models.HomeViewModel
+
+<div id="loading" style="display:none;">
+    <p>Loading cars...</p>
 </div>
+
+<div id="cards-container" style="display:none;">
+    <div class="card-grid">
+        @foreach (var car in Model.Cars)
+        {
+            <div class="car-card">
+                <h3>@car.BrandName @car.Model (@car.Year)</h3>
+
+                <p><strong>Seller:</strong> @car.SellerUsername</p>
+                <p><strong>Price:</strong> $@car.Price</p>
+                <p><strong>Color:</strong> @car.Color</p>
+                <p><strong>VIN:</strong> @car.VIN</p>
+            </div>
+        }
+    </div>
+</div>
+
+<script>
+    document.getElementById("loading").style.display = "block";
+
+    window.addEventListener("load", function() {
+        document.getElementById("loading").style.display = "none";
+        document.getElementById("cards-container").style.display = "block";
+    });
+</script>
+
+<style>
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .car-card {
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 15px;
+        background: white;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+</style>
+

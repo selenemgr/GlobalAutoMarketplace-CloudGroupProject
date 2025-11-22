@@ -31,10 +31,10 @@ namespace GlobalAutoAPI.Controllers
 
         // GET (GetAll): api/cars
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CarWithoutDetailsDto>>> GetCars()
+        public async Task<ActionResult<IEnumerable<CarDto>>> GetCars()
         {
             var carEntities = await _carRepository.GetCarsAsync(includeDetails: true);
-            return Ok(_mapper.Map<IEnumerable<CarWithoutDetailsDto>>(carEntities));
+            return Ok(_mapper.Map<IEnumerable<CarDto>>(carEntities));
         }
 
         // GET (GetById): api/cars/{carId}
@@ -95,7 +95,7 @@ namespace GlobalAutoAPI.Controllers
             var createdCar = await _carRepository.GetCarByIdAsync(carEntity.CarId, includeDetails: true);
 
             var carToReturn = _mapper.Map<CarDto>(createdCar);
-            return CreatedAtRoute("GetCar",new { carId = carToReturn.CarId },carToReturn);
+            return CreatedAtRoute("GetCar", new { carId = carToReturn.CarId }, carToReturn);
         }
 
         // PUT (Full Update): api/cars/{carId}

@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "Project",
+    "Projects": [
+      {
+        "Path": "GlobalAutoAPI\\GlobalAutoAPI.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "GlobalAutoMarketplaceFrontend\\GlobalAutoMarketplaceFrontend.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
