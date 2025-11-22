@@ -9,7 +9,7 @@ public partial class Car
 
     public int BrandId { get; set; }
 
-    public int SellerId { get; set; }
+    public int VehicleTypeId { get; set; }
 
     public string Model { get; set; } = null!;
 
@@ -23,5 +23,5 @@ public partial class Car
 
     public virtual Brand Brand { get; set; } = null!;
 
-    public virtual User Seller { get; set; } = null!;
+    public virtual VehicleType VehicleType { get; set; } = null!;
 }

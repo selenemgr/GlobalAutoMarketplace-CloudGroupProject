@@ -9,7 +9,7 @@ namespace GlobalAutoAPI.Services
 
         public BrandRepository(GlobalAutoDBContext context)
         {
-            _context = context;
+            _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
         public async Task<bool> BrandExistsAsync(int brandId)
@@ -24,7 +24,7 @@ namespace GlobalAutoAPI.Services
             {
                 collection = collection.Include(b => b.Cars);
             }
-            return await collection.OrderBy(b => b.BrandName).ToListAsync();
+            return await collection.OrderBy(b => b.Bname).ToListAsync();
         }
 
         public async Task<Brand?> GetBrandByIdAsync(int brandId, bool includeCars)
@@ -35,6 +35,16 @@ namespace GlobalAutoAPI.Services
                 collection = collection.Include(b => b.Cars);
             }
             return await collection.FirstOrDefaultAsync(b => b.BrandId == brandId);
+        }
+
+        public async Task<Brand?> GetBrandByNameAsync(string brandName, bool includeCars)
+        {
+            IQueryable<Brand> collection = _context.Brands;
+            if (includeCars)
+            {
+                collection = collection.Include(b => b.Cars);
+            }
+            return await collection.FirstOrDefaultAsync(b => b.Bname.ToLower() == brandName.ToLower());
         }
 
         public async Task AddBrandAsync(Brand brand)

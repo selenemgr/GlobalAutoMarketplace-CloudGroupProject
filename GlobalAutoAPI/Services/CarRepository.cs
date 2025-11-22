@@ -9,7 +9,7 @@ namespace GlobalAutoAPI.Services
 
         public CarRepository(GlobalAutoDBContext context)
         {
-            _context = context;
+            _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
         public async Task<bool> CarExistsAsync(int carId)
@@ -22,7 +22,7 @@ namespace GlobalAutoAPI.Services
             IQueryable<Car> collection = _context.Cars;
             if (includeDetails)
             {
-                collection = collection.Include(c => c.Brand).Include(c => c.Seller);
+                collection = collection.Include(c => c.Brand).Include(c => c.VehicleType);
             }
             return await collection.OrderBy(c => c.Model).ToListAsync();
         }
@@ -32,9 +32,24 @@ namespace GlobalAutoAPI.Services
             IQueryable<Car> collection = _context.Cars;
             if (includeDetails)
             {
-                collection = collection.Include(c => c.Brand).Include(c => c.Seller);
+                collection = collection.Include(c => c.Brand).Include(c => c.VehicleType);
             }
             return await collection.FirstOrDefaultAsync(c => c.CarId == carId);
+        }
+
+        //method for lookup by model name 
+        public async Task<IEnumerable<Car>> GetCarsByModelAsync(string model, bool includeDetails)
+        {
+            IQueryable<Car> collection = _context.Cars;
+            if (includeDetails)
+            {
+                collection = collection.Include(c => c.Brand).Include(c => c.VehicleType);
+            }
+
+            return await collection
+                .Where(c => c.Model.ToLower() == model.ToLower())
+                .OrderBy(c => c.Model)
+                .ToListAsync();
         }
 
         public async Task AddCarAsync(Car car)

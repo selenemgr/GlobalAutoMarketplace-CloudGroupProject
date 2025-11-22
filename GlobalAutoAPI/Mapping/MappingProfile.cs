@@ -10,18 +10,22 @@ namespace GlobalAutoAPI.Mapping
         {
             // cars mappings
             CreateMap<Car, CarDto>();
-            CreateMap<Car, CarWithoutDetailsDto>();
-            CreateMap<CarForManipulationDto, Car>();
+            // Map for list view AutoMapper for brands and the second one for type since it is a obj 
+            CreateMap<Car, CarWithoutDetailsDto>().ForMember(dest => dest.BrandName, opt => opt.MapFrom(src => src.Brand.Bname)).ForMember(dest => dest.TypeName, opt => opt.MapFrom(src => src.VehicleType.TypeName));
+            //Added ReverseMap() for patch functionality to work instead of adding other mapping 
+            CreateMap<CarForManipulationDto, Car>().ReverseMap();
 
             // brand mappings
             CreateMap<Brand, BrandDto>();
             CreateMap<Brand, BrandWithoutCarsDto>();
-            CreateMap<BrandForManipulationDto, Brand>();
+            //Added ReverseMap() for patch functionality to work instead of adding other mapping 
+            CreateMap<BrandForManipulationDto, Brand>().ReverseMap();  
 
-            // users mapping
-            CreateMap<User, UserDto>();
-            CreateMap<User, UserWithoutEmailDto>();
-            CreateMap<UserForManipulationDto, User>();
+            // type mappings
+            CreateMap<VehicleType, VehicleTypeDto>();
+            CreateMap<VehicleType, VehicleTypeWithoutCarsDto>();
+            //Added ReverseMap() for patch functionality to work instead of adding other mapping 
+            CreateMap<VehicleTypeForManipulationDto, VehicleType>().ReverseMap();
         }
     }
 }

@@ -3,7 +3,7 @@
     public class BrandDto
     {
         public int BrandId { get; set; }
-        public string BrandName { get; set; } = string.Empty;
+        public string BName { get; set; } = string.Empty;
         public int NumberOfCars { get { return Cars.Count; } }
         public ICollection<CarWithoutDetailsDto> Cars { get; set; } = new List<CarWithoutDetailsDto>();
     }
