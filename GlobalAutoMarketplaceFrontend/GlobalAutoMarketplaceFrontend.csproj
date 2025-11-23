@@ -10,4 +10,8 @@
     <ProjectReference Include="..\GlobalAutoLibrary\GlobalAutoLibrary.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\NewFolder\" />
+  </ItemGroup>
+
 </Project>

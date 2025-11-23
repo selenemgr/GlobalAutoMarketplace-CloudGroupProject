@@ -249,6 +249,36 @@
         }
       }
     },
+    "/api/brands/byname/{brandName}": {
+      "get": {
+        "tags": [
+          "Brands"
+        ],
+        "parameters": [
+          {
+            "name": "brandName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "includeCars",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/cars": {
       "get": {
         "tags": [
@@ -262,7 +292,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/CarWithoutDetailsDto"
+                    "$ref": "#/components/schemas/CarDto"
                   }
                 }
               },
@@ -270,7 +300,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/CarWithoutDetailsDto"
+                    "$ref": "#/components/schemas/CarDto"
                   }
                 }
               },
@@ -278,7 +308,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/CarWithoutDetailsDto"
+                    "$ref": "#/components/schemas/CarDto"
                   }
                 }
               }
@@ -493,10 +523,28 @@
         }
       }
     },
-    "/api/users": {
+    "/api/cars/bymodel/{model}": {
       "get": {
         "tags": [
-          "Users"
+          "Cars"
+        ],
+        "parameters": [
+          {
+            "name": "model",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "includeDetails",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -506,7 +554,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/UserWithoutEmailDto"
+                    "$ref": "#/components/schemas/CarWithoutDetailsDto"
                   }
                 }
               },
@@ -514,7 +562,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/UserWithoutEmailDto"
+                    "$ref": "#/components/schemas/CarWithoutDetailsDto"
                   }
                 }
               },
@@ -522,7 +570,45 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/UserWithoutEmailDto"
+                    "$ref": "#/components/schemas/CarWithoutDetailsDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/types": {
+      "get": {
+        "tags": [
+          "VehicleTypes"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/VehicleTypeWithoutCarsDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/VehicleTypeWithoutCarsDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/VehicleTypeWithoutCarsDto"
                   }
                 }
               }
@@ -532,28 +618,28 @@
       },
       "post": {
         "tags": [
-          "Users"
+          "VehicleTypes"
         ],
         "requestBody": {
           "content": {
             "application/json-patch+json": {
               "schema": {
-                "$ref": "#/components/schemas/UserForManipulationDto"
+                "$ref": "#/components/schemas/VehicleTypeForManipulationDto"
               }
             },
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserForManipulationDto"
+                "$ref": "#/components/schemas/VehicleTypeForManipulationDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserForManipulationDto"
+                "$ref": "#/components/schemas/VehicleTypeForManipulationDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/UserForManipulationDto"
+                "$ref": "#/components/schemas/VehicleTypeForManipulationDto"
               }
             }
           }
@@ -564,17 +650,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/UserDto"
+                  "$ref": "#/components/schemas/VehicleTypeDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UserDto"
+                  "$ref": "#/components/schemas/VehicleTypeDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UserDto"
+                  "$ref": "#/components/schemas/VehicleTypeDto"
                 }
               }
             }
@@ -582,20 +668,28 @@
         }
       }
     },
-    "/api/users/{userId}": {
+    "/api/types/{vehicleTypeId}": {
       "get": {
         "tags": [
-          "Users"
+          "VehicleTypes"
         ],
-        "operationId": "GetUser",
+        "operationId": "GetVehicleType",
         "parameters": [
           {
-            "name": "userId",
+            "name": "vehicleTypeId",
             "in": "path",
             "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "includeCars",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": false
             }
           }
         ],
@@ -607,11 +701,11 @@
       },
       "put": {
         "tags": [
-          "Users"
+          "VehicleTypes"
         ],
         "parameters": [
           {
-            "name": "userId",
+            "name": "vehicleTypeId",
             "in": "path",
             "required": true,
             "schema": {
@@ -624,22 +718,22 @@
           "content": {
             "application/json-patch+json": {
               "schema": {
-                "$ref": "#/components/schemas/UserForManipulationDto"
+                "$ref": "#/components/schemas/VehicleTypeForManipulationDto"
               }
             },
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserForManipulationDto"
+                "$ref": "#/components/schemas/VehicleTypeForManipulationDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserForManipulationDto"
+                "$ref": "#/components/schemas/VehicleTypeForManipulationDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/UserForManipulationDto"
+                "$ref": "#/components/schemas/VehicleTypeForManipulationDto"
               }
             }
           }
@@ -652,11 +746,11 @@
       },
       "patch": {
         "tags": [
-          "Users"
+          "VehicleTypes"
         ],
         "parameters": [
           {
-            "name": "userId",
+            "name": "vehicleTypeId",
             "in": "path",
             "required": true,
             "schema": {
@@ -709,16 +803,46 @@
       },
       "delete": {
         "tags": [
-          "Users"
+          "VehicleTypes"
         ],
         "parameters": [
           {
-            "name": "userId",
+            "name": "vehicleTypeId",
             "in": "path",
             "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/types/byname/{typeName}": {
+      "get": {
+        "tags": [
+          "VehicleTypes"
+        ],
+        "parameters": [
+          {
+            "name": "typeName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "includeCars",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": false
             }
           }
         ],
@@ -739,7 +863,7 @@
             "type": "integer",
             "format": "int32"
           },
-          "brandName": {
+          "bName": {
             "type": "string",
             "nullable": true
           },
@@ -760,11 +884,11 @@
       },
       "BrandForManipulationDto": {
         "required": [
-          "brandName"
+          "bName"
         ],
         "type": "object",
         "properties": {
-          "brandName": {
+          "bName": {
             "maxLength": 50,
             "minLength": 1,
             "type": "string"
@@ -779,7 +903,7 @@
             "type": "integer",
             "format": "int32"
           },
-          "brandName": {
+          "bName": {
             "type": "string",
             "nullable": true
           }
@@ -796,8 +920,8 @@
           "brand": {
             "$ref": "#/components/schemas/BrandWithoutCarsDto"
           },
-          "seller": {
-            "$ref": "#/components/schemas/UserWithoutEmailDto"
+          "vehicleType": {
+            "$ref": "#/components/schemas/VehicleTypeWithoutCarsDto"
           },
           "model": {
             "type": "string",
@@ -827,7 +951,7 @@
           "brandId",
           "model",
           "price",
-          "sellerId",
+          "vehicleTypeId",
           "vin",
           "year"
         ],
@@ -837,7 +961,7 @@
             "type": "integer",
             "format": "int32"
           },
-          "sellerId": {
+          "vehicleTypeId": {
             "type": "integer",
             "format": "int32"
           },
@@ -847,7 +971,7 @@
             "type": "string"
           },
           "year": {
-            "maximum": 2100,
+            "maximum": 2025,
             "minimum": 1900,
             "type": "integer",
             "format": "int32"
@@ -882,6 +1006,10 @@
             "type": "string",
             "nullable": true
           },
+          "typeName": {
+            "type": "string",
+            "nullable": true
+          },
           "model": {
             "type": "string",
             "nullable": true
@@ -893,6 +1021,10 @@
           "price": {
             "type": "number",
             "format": "double"
+          },
+          "color": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -934,73 +1066,67 @@
         "type": "integer",
         "format": "int32"
       },
-      "UserDto": {
+      "VehicleTypeDto": {
         "type": "object",
         "properties": {
-          "userId": {
+          "vehicleTypeId": {
             "type": "integer",
             "format": "int32"
           },
-          "username": {
+          "typeName": {
             "type": "string",
             "nullable": true
           },
-          "email": {
+          "description": {
             "type": "string",
             "nullable": true
           },
-          "userRole": {
-            "type": "string",
+          "numberOfCars": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "cars": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CarWithoutDetailsDto"
+            },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "UserForManipulationDto": {
+      "VehicleTypeForManipulationDto": {
         "required": [
-          "email",
-          "password",
-          "username",
-          "userRole"
+          "typeName"
         ],
         "type": "object",
         "properties": {
-          "username": {
+          "typeName": {
             "maxLength": 50,
             "minLength": 1,
             "type": "string"
           },
-          "email": {
-            "maxLength": 100,
-            "minLength": 1,
+          "description": {
+            "maxLength": 200,
             "type": "string",
-            "format": "email"
-          },
-          "userRole": {
-            "maxLength": 20,
-            "minLength": 1,
-            "type": "string"
-          },
-          "password": {
-            "maxLength": 50,
-            "minLength": 6,
-            "type": "string"
+            "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "UserWithoutEmailDto": {
+      "VehicleTypeWithoutCarsDto": {
         "type": "object",
         "properties": {
-          "userId": {
+          "vehicleTypeId": {
             "type": "integer",
             "format": "int32"
           },
-          "username": {
+          "typeName": {
             "type": "string",
             "nullable": true
           },
-          "userRole": {
+          "description": {
             "type": "string",
             "nullable": true
           }

@@ -10,6 +10,7 @@ namespace GlobalAutoMarketplaceFrontend
             builder.Services.AddHttpClient("GlobalAutoApi", client =>
             {
                 client.BaseAddress = new Uri(builder.Configuration["ApiUrl"]);
+                client.DefaultRequestHeaders.Add("apikey", builder.Configuration["ApiKey"]);
             });
 
             // Add services to the container.

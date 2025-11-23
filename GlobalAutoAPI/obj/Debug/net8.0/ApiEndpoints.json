@@ -126,6 +126,27 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "GlobalAutoAPI.Controllers.BrandsController",
+    "Method": "GetBrandByName",
+    "RelativePath": "api/brands/byname/{brandName}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "brandName",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "includeCars",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "GlobalAutoAPI.Controllers.CarsController",
     "Method": "GetCars",
     "RelativePath": "api/cars",
@@ -252,16 +273,47 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "GlobalAutoAPI.Controllers.UsersController",
-    "Method": "GetUsers",
-    "RelativePath": "api/users",
+    "ContainingType": "GlobalAutoAPI.Controllers.CarsController",
+    "Method": "GetCarsByModel",
+    "RelativePath": "api/cars/bymodel/{model}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "includeDetails",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[GlobalAutoAPI.DTO.CarWithoutDetailsDto, GlobalAutoAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "GlobalAutoAPI.Controllers.VehicleTypesController",
+    "Method": "GetVehicleTypes",
+    "RelativePath": "api/types",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[GlobalAutoAPI.DTO.UserWithoutEmailDto, GlobalAutoAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[GlobalAutoAPI.DTO.VehicleTypeWithoutCarsDto, GlobalAutoAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -272,22 +324,22 @@
     ]
   },
   {
-    "ContainingType": "GlobalAutoAPI.Controllers.UsersController",
-    "Method": "CreateUser",
-    "RelativePath": "api/users",
+    "ContainingType": "GlobalAutoAPI.Controllers.VehicleTypesController",
+    "Method": "CreateVehicleType",
+    "RelativePath": "api/types",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "userForCreation",
-        "Type": "GlobalAutoAPI.DTO.UserForManipulationDto",
+        "Name": "vehicleTypeForCreation",
+        "Type": "GlobalAutoAPI.DTO.VehicleTypeForManipulationDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "GlobalAutoAPI.DTO.UserDto",
+        "Type": "GlobalAutoAPI.DTO.VehicleTypeDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -298,53 +350,58 @@
     ]
   },
   {
-    "ContainingType": "GlobalAutoAPI.Controllers.UsersController",
-    "Method": "GetUser",
-    "RelativePath": "api/users/{userId}",
+    "ContainingType": "GlobalAutoAPI.Controllers.VehicleTypesController",
+    "Method": "GetVehicleType",
+    "RelativePath": "api/types/{vehicleTypeId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "userId",
+        "Name": "vehicleTypeId",
         "Type": "System.Int32",
         "IsRequired": true
+      },
+      {
+        "Name": "includeCars",
+        "Type": "System.Boolean",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": [],
-    "EndpointName": "GetUser"
+    "EndpointName": "GetVehicleType"
   },
   {
-    "ContainingType": "GlobalAutoAPI.Controllers.UsersController",
-    "Method": "UpdateUser",
-    "RelativePath": "api/users/{userId}",
+    "ContainingType": "GlobalAutoAPI.Controllers.VehicleTypesController",
+    "Method": "UpdateVehicleType",
+    "RelativePath": "api/types/{vehicleTypeId}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "userId",
+        "Name": "vehicleTypeId",
         "Type": "System.Int32",
         "IsRequired": true
       },
       {
-        "Name": "userForUpdate",
-        "Type": "GlobalAutoAPI.DTO.UserForManipulationDto",
+        "Name": "vehicleTypeForUpdate",
+        "Type": "GlobalAutoAPI.DTO.VehicleTypeForManipulationDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "GlobalAutoAPI.Controllers.UsersController",
-    "Method": "PartiallyUpdateUser",
-    "RelativePath": "api/users/{userId}",
+    "ContainingType": "GlobalAutoAPI.Controllers.VehicleTypesController",
+    "Method": "PartiallyUpdateVehicleType",
+    "RelativePath": "api/types/{vehicleTypeId}",
     "HttpMethod": "PATCH",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "userId",
+        "Name": "vehicleTypeId",
         "Type": "System.Int32",
         "IsRequired": true
       },
@@ -357,15 +414,15 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "GlobalAutoAPI.Controllers.UsersController",
-    "Method": "DeleteUser",
-    "RelativePath": "api/users/{userId}",
+    "ContainingType": "GlobalAutoAPI.Controllers.VehicleTypesController",
+    "Method": "DeleteVehicleType",
+    "RelativePath": "api/types/{vehicleTypeId}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "userId",
+        "Name": "vehicleTypeId",
         "Type": "System.Int32",
         "IsRequired": true
       }
@@ -373,17 +430,22 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "GlobalAutoAPI.Controllers.UsersController",
-    "Method": "Login",
-    "RelativePath": "api/users/login",
-    "HttpMethod": "POST",
+    "ContainingType": "GlobalAutoAPI.Controllers.VehicleTypesController",
+    "Method": "GetVehicleTypeByName",
+    "RelativePath": "api/types/byname/{typeName}",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "loginDto",
-        "Type": "GlobalAutoAPI.DTO.LoginDto",
+        "Name": "typeName",
+        "Type": "System.String",
         "IsRequired": true
+      },
+      {
+        "Name": "includeCars",
+        "Type": "System.Boolean",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

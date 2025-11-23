@@ -8,17 +8,28 @@
     <p>Loading cars...</p>
 </div>
 
+<div class="filter-area">
+    @await Component.InvokeAsync("TypeFilter")
+    <form asp-controller="Cars" asp-action="Create" method="get" class="d-inline">
+        <button type="submit" class="btn btn-primary btn-md mb-3">
+            Add New Car
+        </button>
+    </form>
+</div>
+
 <div id="cards-container" style="display:none;">
     <div class="card-grid">
         @foreach (var car in Model.Cars)
         {
             <div class="car-card">
-                <h3>@car.BrandName @car.Model (@car.Year)</h3>
+                <h3>@car.BrandName @car.Model</h3>
 
-                <p><strong>Seller:</strong> @car.SellerUsername</p>
-                <p><strong>Price:</strong> $@car.Price</p>
-                <p><strong>Color:</strong> @car.Color</p>
-                <p><strong>VIN:</strong> @car.VIN</p>
+                <div class="car-info">
+                    <p><strong>Year:</strong> @car.Year</p>
+                    <p><strong>Type:</strong> @car.TypeName</p>
+                    <p><strong>Price:</strong> $@car.Price</p>
+                    <p><strong>Color:</strong> @car.Color</p>
+                </div>
             </div>
         }
     </div>
@@ -38,15 +49,29 @@
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
         gap: 20px;
-        padding: 20px;
     }
 
     .car-card {
-        border: 1px solid #ddd;
+        border: 2px solid #ddd;
         border-radius: 10px;
         padding: 15px;
+        gap: 5px;
         background: white;
         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .car-info {
+        justify-content: flex-end;
+        margin-top: auto;
+    }
+
+    .filter-area {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 5px;
     }
 </style>
 

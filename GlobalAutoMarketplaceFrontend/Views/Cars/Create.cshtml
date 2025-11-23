@@ -1,0 +1,93 @@
+﻿@model GlobalAutoMarketplaceFrontend.Models.CarCreateDto
+
+@{
+    ViewData["Title"] = "Add New Car";
+    var carTypes = ViewBag.CarTypes as List<GlobalAutoMarketplaceFrontend.Models.CarType>;
+    var brands = ViewBag.Brands as List<GlobalAutoMarketplaceFrontend.Models.Brand>;
+
+    var colors = new List<string> {
+        "White", "Black", "Red", "Blue", "Green", "Yellow", "Orange",
+        "Purple", "Lavender", "Gray", "Silver", "Pink", "Brown", "Cyan", "Magenta"
+    };
+
+    var currentYear = DateTime.Now.Year;
+    var years = Enumerable.Range(1990, currentYear - 1990 + 1).Reverse();
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (!ViewData.ModelState.IsValid && ViewData.ModelState[""] != null)
+{
+    <div class="alert alert-danger">
+        @ViewData.ModelState[""].Errors.FirstOrDefault()?.ErrorMessage
+    </div>
+}
+
+<form asp-action="Create" method="post">
+    <div class="mb-3">
+        <label asp-for="BrandId" class="form-label">Brand Name</label>
+        <select asp-for="BrandId" class="form-select">
+            <option value="">-- Select Brand --</option>
+            @foreach (var brand in brands)
+            {
+                <option value="@brand.BrandId">@brand.Bname</option>
+            }
+        </select>
+        <span asp-validation-for="BrandId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Model" class="form-label"></label>
+        <input asp-for="Model" class="form-control" />
+        <span asp-validation-for="Model" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Year" class="form-label"></label>
+        <select asp-for="Year" class="form-select">
+            <option value="">-- Select Year --</option>
+            @foreach (var year in years)
+            {
+                <option value="@year">@year</option>
+            }
+        </select>
+        <span asp-validation-for="Year" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="VehicleTypeId" class="form-label">Car Type</label>
+        <select asp-for="VehicleTypeId" class="form-select">
+            <option value="">-- Select Type --</option>
+            @foreach (var type in carTypes)
+            {
+                <option value="@type.VehicleTypeId">@type.TypeName</option>
+            }
+        </select>
+        <span asp-validation-for="VehicleTypeId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Price" class="form-label"></label>
+        <input asp-for="Price" type="number" step="0.01" class="form-control" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Color" class="form-label"></label>
+        <select asp-for="Color" class="form-select">
+            <option value="">-- Select Color --</option>
+            @foreach (var color in colors)
+            {
+                <option value="@color">@color</option>
+            }
+        </select>
+        <span asp-validation-for="Color" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Create</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

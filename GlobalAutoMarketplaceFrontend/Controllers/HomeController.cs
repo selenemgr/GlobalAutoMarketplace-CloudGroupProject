@@ -1,4 +1,3 @@
-using GlobalAutoLibrary.Models;
 using GlobalAutoMarketplaceFrontend.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -31,14 +30,12 @@ namespace GlobalAutoMarketplaceFrontend.Controllers
             {
                 return new CarCardViewModel
                 {
-                    CarId = car.CarId,
-                    BrandName = car.Brand.BrandName ?? "Unknown Brand",
-                    SellerUsername = car.Seller.Username ?? "Unknown Seller",
+                    BrandName = car.BrandName ?? "Unknown Brand",
+                    TypeName = car.TypeName ?? "Unknown Type",
                     Model = car.Model,
                     Year = car.Year,
                     Price = car.Price,
                     Color = car.Color,
-                    VIN = car.Vin
                 };
             });
 
