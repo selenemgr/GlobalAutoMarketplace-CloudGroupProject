@@ -23,4 +23,16 @@
         public string Color { get; set; }
         public string VIN { get; set; } = string.Empty;
     }
+
+    public class CarForManipulationDto
+    {
+        public int CarId { get; set; }
+        public int BrandId { get; set; }
+        public int VehicleTypeId { get; set; }
+        public string Model { get; set; } = string.Empty;
+        public int Year { get; set; }
+        public decimal Price { get; set; }
+        public string? Color { get; set; }
+        public string VIN { get; set; } = string.Empty;
+    }
 }

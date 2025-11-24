@@ -18,9 +18,9 @@ namespace GlobalAutoMarketplaceFrontend.ViewComponents
             var client = _httpClientFactory.CreateClient("GlobalAutoApi");
             var response = await client.GetAsync("types");
 
-            var types = await response.Content.ReadFromJsonAsync<IEnumerable<CarType>>();
+            var types = await response.Content.ReadFromJsonAsync<IEnumerable<VehicleType>>();
 
-            var carTypes = types.Select(type => new CarType
+            var carTypes = types.Select(type => new VehicleType
             {
                 VehicleTypeId = type.VehicleTypeId,
                 TypeName = type.TypeName,

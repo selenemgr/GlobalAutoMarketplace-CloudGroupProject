@@ -78,7 +78,7 @@ INSERT INTO Cars (BrandId, VehicleTypeId, Model, Year, Price, Color, VIN) VALUES
 (1, 7, 'Sienna', 2020, 32500.00, 'Black', 'JTD90123456789017'), -- Minivan
 (1, 3, 'Tundra', 2024, 55000.00, 'Black', 'JTD90123456789018'), -- Truck
 (1, 9, 'Prius', 2023, 27500.00, 'Green', 'JTD90123456789019'), -- Hybrid
-(1, 2, '4Runner', 2022, 42000.00, 'Army Green', 'JTD90123456789020'), -- SUV
+(1, 2, '4Runner', 2022, 42000.00, 'Green', 'JTD90123456789020'), -- SUV
 (1, 4, 'Supra', 2024, 60000.00, 'Yellow', 'JTD90123456789021'); -- Coupe
 
 -- 10 Honda (Brand 2)

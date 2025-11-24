@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GlobalAutoLibrary\GlobalAutoLibrary.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="10.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\NewFolder\" />
+    <ProjectReference Include="..\GlobalAutoLibrary\GlobalAutoLibrary.csproj" />
   </ItemGroup>
 
 </Project>

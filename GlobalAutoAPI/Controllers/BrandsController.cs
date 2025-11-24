@@ -46,9 +46,7 @@ namespace GlobalAutoAPI.Controllers
             return Ok(_mapper.Map<BrandWithoutCarsDto>(brand));
         }
 
-        //extra part for easier search
-        // GET By Name : api/types/byname/{brandName}
-        // note it is /byname/{brandName}
+        // GET By Name : api/brands/byname/{brandName}
         [HttpGet("byname/{brandName}")]
         public async Task<IActionResult> GetBrandByName(string brandName, bool includeCars = false)
         {

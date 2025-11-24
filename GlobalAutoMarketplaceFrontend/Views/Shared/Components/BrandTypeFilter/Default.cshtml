@@ -1,0 +1,120 @@
+﻿@model List<GlobalAutoMarketplaceFrontend.Models.VehicleType>
+
+<div class="type-filter-container">
+
+    <select id="typeFilter" class="form-select">
+        <option value="all">All Types</option>
+        @foreach (var type in Model)
+        {
+            <option value="@type.TypeName" data-description="@type.Description">
+                @type.TypeName
+            </option>
+        }
+    </select>
+
+    <div id="typeDescription" class="type-description">
+        Select a type to see the description.
+    </div>
+
+</div>
+
+<style>
+    .type-filter-container {
+        display: flex;
+        align-items: center;
+        padding: 10px 0;
+        gap: 20px;
+    }
+
+    .type-description {
+        font-style: italic;
+        color: #555;
+    }
+
+    .form-select {
+        width: 200px;
+    }
+
+    #no-cars-msg {
+        font-style: italic;
+        color: #F06F7C;
+        font-size: 20px;
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const dropdown = document.getElementById("typeFilter");
+        const descBox = document.getElementById("typeDescription");
+
+        dropdown.addEventListener("change", function () {
+            const selected = dropdown.options[dropdown.selectedIndex];
+            const selectedType = dropdown.value;
+
+            descBox.textContent = selected.dataset.description || "Showing all types.";
+
+            const brandCards = document.querySelectorAll(".brand-card");
+            let anyBrandVisible = false;
+
+            if (selectedType === "all") {
+                brandCards.forEach(brandCard => {
+                    brandCard.style.display = "block";
+
+                    const carMiniCards = brandCard.querySelectorAll(".car-mini-card");
+                    carMiniCards.forEach(car => (car.style.display = "block"));
+                });
+
+                const noCarsMsg = document.getElementById("no-cars-msg");
+                if (noCarsMsg) noCarsMsg.textContent = "";
+
+                return; 
+            }
+
+            brandCards.forEach(brandCard => {
+
+                const carMiniCards = brandCard.querySelectorAll(".car-mini-card");
+                let anyCarVisible = false;
+
+                carMiniCards.forEach(car => {
+                    const typeP = Array.from(car.querySelectorAll("p"))
+                        .find(p => p.innerText.startsWith("Type:"));
+
+                    const typeText = typeP
+                        ? typeP.innerText.replace("Type:", "").trim()
+                        : "";
+
+                    if (!selectedType || typeText === selectedType) {
+                        car.style.display = "block";
+                        anyCarVisible = true;
+                    } else {
+                        car.style.display = "none";
+                    }
+                });
+
+                if (anyCarVisible) {
+                    brandCard.style.display = "block";
+                    anyBrandVisible = true;
+                } else {
+                    brandCard.style.display = "none";
+                }
+            });
+
+            let noCarsMsg = document.getElementById("no-cars-msg");
+            if (!noCarsMsg) {
+                noCarsMsg = document.createElement("p");
+                noCarsMsg.id = "no-cars-msg";
+                noCarsMsg.style.textAlign = "center";
+                noCarsMsg.style.fontStyle = "italic";
+                noCarsMsg.style.marginTop = "20px";
+                noCarsMsg.style.color = "#F06F7C";
+                noCarsMsg.style.fontSize = "20px";
+                document.getElementById("brands-container").appendChild(noCarsMsg);
+            }
+
+            noCarsMsg.textContent = anyBrandVisible
+                ? ""
+                : "No cars of this type are available right now.";
+        });
+    });
+</script>
+

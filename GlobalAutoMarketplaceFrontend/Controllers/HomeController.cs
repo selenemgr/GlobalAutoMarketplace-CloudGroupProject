@@ -30,6 +30,7 @@ namespace GlobalAutoMarketplaceFrontend.Controllers
             {
                 return new CarCardViewModel
                 {
+                    CarId = car.CarId,
                     BrandName = car.BrandName ?? "Unknown Brand",
                     TypeName = car.TypeName ?? "Unknown Type",
                     Model = car.Model,

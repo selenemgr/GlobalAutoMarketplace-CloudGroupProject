@@ -1,4 +1,4 @@
-﻿@model List<GlobalAutoMarketplaceFrontend.Models.CarType>
+﻿@model List<GlobalAutoMarketplaceFrontend.Models.VehicleType>
 
 <div class="type-filter-container">
 
@@ -51,10 +51,8 @@
             const selected = dropdown.options[dropdown.selectedIndex];
             const selectedType = dropdown.value;
 
-            // Update description
             descBox.textContent = selected.dataset.description || "Showing all types.";
 
-            // Filter car cards
             const cards = document.querySelectorAll(".car-card");
             let anyVisible = false;
 
@@ -72,7 +70,6 @@
                 }
             });
 
-            // Show message if no cars match
             let noCarsMsg = document.getElementById("no-cars-msg");
             if (!noCarsMsg) {
                 noCarsMsg = document.createElement("p");

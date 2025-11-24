@@ -12,3 +12,18 @@ C:\Users\abdul\OneDrive\Desktop\Centennial S\Semester 5\API Engineering & Cloud 
 C:\Users\abdul\OneDrive\Desktop\Centennial S\Semester 5\API Engineering & Cloud Computing\GlobalAutoMarketplace\GlobalAutoLibrary\obj\Debug\net8.0\GlobalAutoLibrary.pdb
 C:\Users\abdul\OneDrive\Desktop\Centennial S\Semester 5\API Engineering & Cloud Computing\GlobalAutoMarketplace\GlobalAutoLibrary\obj\Debug\net8.0\GlobalAutoLibrary.genruntimeconfig.cache
 C:\Users\abdul\OneDrive\Desktop\Centennial S\Semester 5\API Engineering & Cloud Computing\GlobalAutoMarketplace\GlobalAutoLibrary\obj\Debug\net8.0\ref\GlobalAutoLibrary.dll
+C:\0_Selene_Stuff\College\COMP Cloud\GroupProject\GlobalAutoMarketplace\GlobalAutoLibrary\bin\Debug\net8.0\GlobalAutoLibrary.deps.json
+C:\0_Selene_Stuff\College\COMP Cloud\GroupProject\GlobalAutoMarketplace\GlobalAutoLibrary\bin\Debug\net8.0\GlobalAutoLibrary.runtimeconfig.json
+C:\0_Selene_Stuff\College\COMP Cloud\GroupProject\GlobalAutoMarketplace\GlobalAutoLibrary\bin\Debug\net8.0\GlobalAutoLibrary.dll
+C:\0_Selene_Stuff\College\COMP Cloud\GroupProject\GlobalAutoMarketplace\GlobalAutoLibrary\bin\Debug\net8.0\GlobalAutoLibrary.pdb
+C:\0_Selene_Stuff\College\COMP Cloud\GroupProject\GlobalAutoMarketplace\GlobalAutoLibrary\obj\Debug\net8.0\GlobalAutoLibrary.csproj.AssemblyReference.cache
+C:\0_Selene_Stuff\College\COMP Cloud\GroupProject\GlobalAutoMarketplace\GlobalAutoLibrary\obj\Debug\net8.0\GlobalAutoLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\0_Selene_Stuff\College\COMP Cloud\GroupProject\GlobalAutoMarketplace\GlobalAutoLibrary\obj\Debug\net8.0\GlobalAutoLibrary.AssemblyInfoInputs.cache
+C:\0_Selene_Stuff\College\COMP Cloud\GroupProject\GlobalAutoMarketplace\GlobalAutoLibrary\obj\Debug\net8.0\GlobalAutoLibrary.AssemblyInfo.cs
+C:\0_Selene_Stuff\College\COMP Cloud\GroupProject\GlobalAutoMarketplace\GlobalAutoLibrary\obj\Debug\net8.0\GlobalAutoLibrary.csproj.CoreCompileInputs.cache
+C:\0_Selene_Stuff\College\COMP Cloud\GroupProject\GlobalAutoMarketplace\GlobalAutoLibrary\obj\Debug\net8.0\GlobalAutoLibrary.sourcelink.json
+C:\0_Selene_Stuff\College\COMP Cloud\GroupProject\GlobalAutoMarketplace\GlobalAutoLibrary\obj\Debug\net8.0\GlobalAutoLibrary.dll
+C:\0_Selene_Stuff\College\COMP Cloud\GroupProject\GlobalAutoMarketplace\GlobalAutoLibrary\obj\Debug\net8.0\refint\GlobalAutoLibrary.dll
+C:\0_Selene_Stuff\College\COMP Cloud\GroupProject\GlobalAutoMarketplace\GlobalAutoLibrary\obj\Debug\net8.0\GlobalAutoLibrary.pdb
+C:\0_Selene_Stuff\College\COMP Cloud\GroupProject\GlobalAutoMarketplace\GlobalAutoLibrary\obj\Debug\net8.0\GlobalAutoLibrary.genruntimeconfig.cache
+C:\0_Selene_Stuff\College\COMP Cloud\GroupProject\GlobalAutoMarketplace\GlobalAutoLibrary\obj\Debug\net8.0\ref\GlobalAutoLibrary.dll
