@@ -24,15 +24,15 @@ namespace GlobalAutoMarketplaceFrontend.Controllers
                 return View("Error");
             }
 
-            var cars = await carResponse.Content.ReadFromJsonAsync<IEnumerable<Car>>();
+            var cars = await carResponse.Content.ReadFromJsonAsync<IEnumerable<CarDetails>>();
 
             var carCards = cars.Select(car =>
             {
                 return new CarCardViewModel
                 {
                     CarId = car.CarId,
-                    BrandName = car.BrandName ?? "Unknown Brand",
-                    TypeName = car.TypeName ?? "Unknown Type",
+                    BrandName = car.Brand.Bname ?? "Unknown Brand",
+                    TypeName = car.VehicleType.TypeName ?? "Unknown Type",
                     Model = car.Model,
                     Year = car.Year,
                     Price = car.Price,

@@ -35,15 +35,15 @@ namespace GlobalAutoMarketplaceFrontend.Controllers
                 return View("Error");
             }
 
-            var cars = await carResponse.Content.ReadFromJsonAsync<IEnumerable<Car>>();
+            var cars = await carResponse.Content.ReadFromJsonAsync<IEnumerable<CarDetails>>();
 
             var carCards = cars.Select(car =>
             {
                 return new CarCardViewModel
                 {
                     CarId = car.CarId,
-                    BrandName = car.BrandName ?? "Unknown Brand",
-                    TypeName = car.TypeName ?? "Unknown Type",
+                    BrandName = car.Brand.Bname ?? "Unknown Brand",
+                    TypeName = car.VehicleType.TypeName ?? "Unknown Type",
                     Model = car.Model,
                     Year = car.Year,
                     Price = car.Price,
@@ -75,8 +75,10 @@ namespace GlobalAutoMarketplaceFrontend.Controllers
             return RedirectToAction("Index");
         }
 
+
+
         [HttpPost]
-        public async Task<IActionResult> Edit(int brandId, string newName)
+        public async Task<IActionResult> EditPatch(int brandId, string newName)
         {
             if (string.IsNullOrWhiteSpace(newName))
             {
@@ -96,10 +98,18 @@ namespace GlobalAutoMarketplaceFrontend.Controllers
             var brandObj = JsonSerializer.Deserialize<BrandWithCarsDto>(brandData,
                 new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
-            if (brandObj?.Cars == null || brandObj.Cars.Count == 0)
+            if (brandObj?.Cars != null || brandObj.Cars.Count != 0)
             {
-                TempData["SuccessMessage"] = "Cars Brand updated successfully!";
-                return RedirectToAction("Index");
+                foreach (var car in brandObj.Cars)
+                {
+                    var carPatch = new JsonPatchDocument();
+                    carPatch.Replace("/brandName", newName);
+
+                    var carJson = JsonSerializer.Serialize(carPatch.Operations);
+                    var carContent = new StringContent(carJson, Encoding.UTF8, "application/json-patch+json");
+
+                    await _httpClient.PatchAsync($"cars/{car.CarId}", carContent);
+                }
             }
 
             foreach (var car in brandObj.Cars)
@@ -127,6 +137,33 @@ namespace GlobalAutoMarketplaceFrontend.Controllers
             }
 
             TempData["SuccessMessage"] = "Brand and all car names updated successfully!";
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditPut(int brandId, string newName)
+        {
+            if (string.IsNullOrWhiteSpace(newName))
+            {
+                TempData["ErrorMessage"] = "Brand name is required.";
+                return RedirectToAction("Index");
+            }
+
+            var brandUpdate = new BrandCreateDto
+            {
+                Bname = newName
+            };
+
+            var brandContent = new StringContent(JsonSerializer.Serialize(brandUpdate), Encoding.UTF8, "application/json");
+            var brandResponse = await _httpClient.PutAsync($"brands/{brandId}", brandContent);
+            if (brandResponse.IsSuccessStatusCode)
+            {
+                TempData["SuccessMessage"] = "Brand updated successfully!";
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Failed to update brand.";
+            }
             return RedirectToAction("Index");
         }
 
